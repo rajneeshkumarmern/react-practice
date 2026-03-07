@@ -1,27 +1,45 @@
+import { useState } from "react";
 import Course from "../course/Course";
 import "./Student.css";
 
-function Student(){
-  const Student={
-    sid:101,
-    sname:"John",
-    course:"MCA",
-    email:"john@example.com",
-    phone:1234567890,
-    city:"New York"
-  }
-  console.log("Student component is rendering");
-  
-  return(
+function Student() {
+
+  const [showStudent, setShowStudent] = useState(false);
+
+  const student = {
+    sid: 105,
+    sname: "Srinivas",
+    email: "sri@jlc",
+    phone: 12345,
+    city: "Blore"
+  };
+
+  const showStudentInfo = () => {
+    console.log("Button is Clicked");
+    setShowStudent(!showStudent);
+  };
+
+  return (
     <div className="mystudent">
-        <p>Sid:{Student.sid}</p>
-        <p>Sname:{Student.sname}</p>
-        <p>course:{Student.course}</p>
-        <p>Email:{Student.email}</p>
-        <p>Phone:{Student.phone}</p>
-        <p>City:{Student.city}</p>
-        <br/>
-        <Course/>
+
+      <button className="mybutton" onClick={showStudentInfo}>
+        Student Details
+      </button>
+
+      {showStudent && (
+        <div>
+          <p>Sid : {student.sid}</p>
+          <p>Sname : {student.sname}</p>
+          <p>Email : {student.email}</p>
+          <p>Phone : {student.phone}</p>
+          <p>City : {student.city}</p>
+
+          <Course />
+        </div>
+      )}
+
     </div>
   );
 }
+
+export default Student;
