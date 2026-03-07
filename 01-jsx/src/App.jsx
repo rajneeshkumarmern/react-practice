@@ -1,19 +1,19 @@
+import Student from "./student/Student";
 import "./App.css";
 
 function App() {
 
-  const companyName = "Java Learning Center";
-  const courseName = "React";
+  const myheader = "Welcome to Java Learning Center";
+
+  console.log("I am App Component");
 
   return (
-    <div className="container">
-      <p className="title">
-        Welcome to {companyName}
-      </p>
+    <div className="myheader">
+      <p>{myheader}</p>
 
-      <p className="subtitle">
-        You are learning {courseName} from Srinivas Dande
-      </p>
+      <br />
+
+      <Student />
     </div>
   );
 }

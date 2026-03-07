@@ -1,17 +1,5 @@
-.container {
-  border: 2px solid red;
-  border-radius: 5px;
-  padding: 20px;
-}
-
-.title {
-  font-size: 25px;
-  color: red;
-  text-align: center;
-}
-
-.subtitle {
-  font-size: 20px;
-  color: blue;
-  text-align: center;
+.myheader{
+  text-align:center;
+  font-size:20px;
+  font-family:Cambria;
 }
