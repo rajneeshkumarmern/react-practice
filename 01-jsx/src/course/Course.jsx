@@ -1,22 +1,15 @@
 import { useState } from "react";
 import "./Course.css";
 
-function Course() {
+function Course(props) {
 
   const [showCourse, setShowCourse] = useState(false);
 
-  const course = {
-    courseId: "C-12",
-    courseName: "React",
-    price: 16000,
-    duration: "50 hours",
-    trainer: "Srinivas Dande"
-  };
-
   const showCourseInfo = () => {
-    console.log("Button is Clicked");
     setShowCourse(!showCourse);
   };
+
+  console.log("Course Component Rendered");
 
   return (
     <div className="mycourse">
@@ -27,11 +20,11 @@ function Course() {
 
       {showCourse && (
         <div>
-          <p>Cid : {course.courseId}</p>
-          <p>Cname : {course.courseName}</p>
-          <p>Price : {course.price}</p>
-          <p>Duration : {course.duration}</p>
-          <p>Trainer : {course.trainer}</p>
+          <p>Cid : {props.mycid}</p>
+          <p>Cname : {props.mycname}</p>
+          <p>Price : {props.myprice}</p>
+          <p>Duration : {props.myduration}</p>
+          <p>Trainer : {props.mytrainer}</p>
         </div>
       )}
 
