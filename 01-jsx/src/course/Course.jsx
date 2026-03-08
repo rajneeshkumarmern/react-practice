@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Course.css";
 
-function Course(props) {
+function Course({ mycourse }) {
 
   const [showCourse, setShowCourse] = useState(false);
 
@@ -15,16 +15,16 @@ function Course(props) {
     <div className="mycourse">
 
       <button className="mybutton" onClick={showCourseInfo}>
-        Course Details
+        Course Info
       </button>
 
       {showCourse && (
         <div>
-          <p>Cid : {props.mycid}</p>
-          <p>Cname : {props.mycname}</p>
-          <p>Price : {props.myprice}</p>
-          <p>Duration : {props.myduration}</p>
-          <p>Trainer : {props.mytrainer}</p>
+          <p>Course Id : {mycourse.courseId}</p>
+          <p>Course Name : {mycourse.courseName}</p>
+          <p>Price : {mycourse.price}</p>
+          <p>Duration : {mycourse.duration}</p>
+          <p>Trainer : {mycourse.trainer}</p>
         </div>
       )}
 
