@@ -1,34 +1,22 @@
 import React, { useContext } from "react";
-import StudentContext from "./StudentContext";
+import { StudentContext } from "./StudentContext";
 
 const StudentComponent = () => {
 
-  const mystudentData = useContext(StudentContext);
+  const { studentId, studentName, email, phone } =
+    useContext(StudentContext);
 
   return (
     <div className="container">
 
       <br />
 
-      <b>
-        <u>
-          <h2 className="text-center">Student Info</h2>
-        </u>
-      </b>
+      <h2 className="text-center">Student Info</h2>
 
-      <br />
-
-      <div>
-
-        <h3>Student ID : {mystudentData.studentId}</h3>
-
-        <h3>Student Name : {mystudentData.studentName}</h3>
-
-        <h3>Email Id : {mystudentData.email}</h3>
-
-        <h3>Phone No : {mystudentData.phone}</h3>
-
-      </div>
+      <h3>Student ID : {studentId}</h3>
+      <h3>Student Name : {studentName}</h3>
+      <h3>Email : {email}</h3>
+      <h3>Phone : {phone}</h3>
 
     </div>
   );
