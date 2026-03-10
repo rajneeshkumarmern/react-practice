@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-function MyCourses() {
+const MyCourses = () => {
 
   const [trainerName] = useState("Srinivas Dande");
   const [trainerEmail, setTrainerEmail] = useState("sri@jlc.com");
@@ -10,10 +10,10 @@ function MyCourses() {
     { cid: 102, cname: "React 16", price: 15000, active: true },
     { cid: 103, cname: "Java FSD", price: 35000, active: false },
     { cid: 104, cname: "MicroServices", price: 25000, active: true },
-    { cid: 105, cname: "DevOps", price: 15000, active: false },
+    { cid: 105, cname: "DevOps", price: 15000, active: false }
   ];
 
-  const [mycourseList, setMycourseList] = useState(allCourses);
+  const [courseList, setCourseList] = useState(allCourses);
 
   const showActiveCourses = () => {
     console.log("showActiveCourses - called");
@@ -23,36 +23,28 @@ function MyCourses() {
     );
 
     setTrainerEmail("srinivas@jlc.com");
-    setMycourseList(activeCourses);
+    setCourseList(activeCourses);
   };
 
   const showAllCourses = () => {
     console.log("showAllCourses - called");
 
     setTrainerEmail("sri@jlc.com");
-    setMycourseList(allCourses);
+    setCourseList(allCourses);
   };
 
-  useEffect(() => {
-    showAllCourses();
-  }, []);
-
-  const courseListToDisplay = mycourseList.map((course) => (
+  const courseListToDisplay = courseList.map((course) => (
     <tr key={course.cid}>
-      <td>
-        <h6>{course.cid}</h6>
-      </td>
-      <td>
-        <h6>{course.cname}</h6>
-      </td>
-      <td>
-        <h6>{course.price}</h6>
-      </td>
-      <td>
-        <h6>{course.active.toString()}</h6>
-      </td>
+      <td><h6>{course.cid}</h6></td>
+      <td><h6>{course.cname}</h6></td>
+      <td><h6>{course.price}</h6></td>
+      <td><h6>{course.active.toString()}</h6></td>
     </tr>
   ));
+
+  const trainerInfo = trainerName ? (
+    <h3>Trainer Name : {trainerName}</h3>
+  ) : null;
 
   return (
     <div className="container">
@@ -89,15 +81,18 @@ function MyCourses() {
           </tr>
         </thead>
 
-        <tbody>{courseListToDisplay}</tbody>
+        <tbody>
+          {courseListToDisplay}
+        </tbody>
 
       </table>
 
-      <h3>Trainer Name : {trainerName}</h3>
+      {trainerInfo}
+
       <h3>Trainer Email : {trainerEmail}</h3>
 
     </div>
   );
-}
+};
 
 export default MyCourses;
