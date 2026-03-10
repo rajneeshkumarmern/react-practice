@@ -1,48 +1,29 @@
-.myheader{
-  text-align: center;
-  font-size: 24px;
+.myclass1{
+  padding:10px;
+  background-color: lightcyan;
+}
+
+.myclass2{
+  font-size:25px;
   font-family: Cambria;
-  color: red;
-  margin-bottom: 20px;
 }
 
-.mydata{
-  font-size: 18px;
+.myred{
+  color:red;
+  border:2px solid blue;
+  border-radius:5px;
+}
+
+.myblue{
+  color:blue;
+  border:5px solid red;
+  border-radius:15px;
+}
+
+p{
   font-family: Cambria;
-  margin-top: 20px;
-}
-
-/* Table Styling */
-table{
-  width: 100%;
-  border: 1px solid cadetblue;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-tr, td, th{
-  border: 1px solid cadetblue;
-  padding: 10px;
-  text-align: center;
-}
-
-th{
-  background-color: teal;
-  color: white;
-  font-size: 18px;
-}
-
-/* Button Styling */
-.btn{
-  background-color: teal;
-  color: white;
-  font-size: 14px;
-  padding: 6px 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.btn:hover{
-  background-color: darkcyan;
+  font-size:25px;
+  color:black;
+  font-weight:bold;
+  margin-top:25px;
 }
