@@ -1,13 +1,28 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import MyCourses from "./mycourses/MyCourses";
+import React, { useState } from "react";
+import Hello from "./Hello/Hello.jsx";
 
 const App = () => {
+
+  const [companyName] = useState("Java Learning Center");
+
+  console.log("[App] - render()");
+  console.log("[App] - companyName:", companyName);
+
   return (
     <div className="container">
-      <h1 className="text-center">Welcome to JLC !!!</h1>
+
+      <h1 className="text-center">
+        Welcome to JLC!!!
+      </h1>
+
       <br />
-      <MyCourses />
+
+      <Hello />
+
+      <Hello mytrainer="Dande" />
+
+      <Hello mytrainer="Srinivas" mycolor="Pink" />
+
     </div>
   );
 };
