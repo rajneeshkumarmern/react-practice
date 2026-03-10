@@ -1,24 +1,19 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
-import Header from "./components/Header";
-import LeadsList from "./components/LeadsList";
-import { MyApplicationData } from "./appContext";
+import { MyStudentProvider } from "./StudentContext";
+import StudentComponent from "./StudentComponent";
 
 const App = () => {
+
   return (
-    <MyApplicationData>
+    <MyStudentProvider>
 
-      <div className="App container">
-
-        <Header mybrand="Lead Manager" />
-
-        <LeadsList />
-
+      <div className="container">
+        <StudentComponent />
       </div>
 
-    </MyApplicationData>
+    </MyStudentProvider>
   );
 };
 
