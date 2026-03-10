@@ -3,66 +3,108 @@ import "./App.css";
 
 function App() {
 
-  const [state] = useState({
-    sid: 105,
-    sname: "hello",
-    email: "hello@jlc",
-    dob: new Date().toString(),
-    isActive: false,
+  const [mycoursesToDisplay, setMyCoursesToDisplay] = useState(null);
 
-    mycourse: {
-      courseId: "C-123",
-      courseName: "React",
-      price: 25000,
-      trainer: "Srinivas Dande",
-      isOnline: true
+  const mystudentsData = [
+    {
+      studentId: 5001,
+      stuentName: "Sri",
+      emailId: "Sri@jlc.com",
+      phones: { office: 1111, home: 2222 },
+      address: { city: "Blore", state: "KA" },
+      mycourses: [
+        { cid: 101, cname: "React", price: 15000, trainer: "Srinivas" },
+        { cid: 102, cname: "Angular", price: 15000, trainer: "Srinivas" },
+        { cid: 103, cname: "Spring", price: 15000, trainer: "Srinivas" }
+      ]
     },
+    {
+      studentId: 5002,
+      stuentName: "Vas",
+      emailId: "vas@jlc.com",
+      phones: { office: 1111, home: 2222 },
+      address: { city: "Blore", state: "KA" },
+      mycourses: [
+        { cid: 201, cname: "React", price: 15000, trainer: "Srinivas" },
+        { cid: 202, cname: "Angular", price: 15000, trainer: "Srinivas" },
+        { cid: 203, cname: "Spring", price: 15000, trainer: "Srinivas" }
+      ]
+    },
+    {
+      studentId: 5003,
+      stuentName: "SD",
+      emailId: "sd@jlc.com",
+      phones: { office: 1111, home: 2222 },
+      address: { city: "Blore", state: "KA" },
+      mycourses: [
+        { cid: 301, cname: "React", price: 15000, trainer: "Srinivas" },
+        { cid: 302, cname: "Angular", price: 15000, trainer: "Srinivas" },
+        { cid: 303, cname: "Spring", price: 15000, trainer: "Srinivas" }
+      ]
+    }
+  ];
 
-    mycourseNames: [
-      "Angular",
-      "React",
-      "MongoDB",
-      "NodeJS",
-      "ExpressJS"
-    ],
+  const showCourseData = (mystudent) => {
 
-    mycourseList: [
-      { courseId: "C-101", courseName: "React", price: 15000, trainer: "Srinivas" },
-      { courseId: "C-102", courseName: "Angular", price: 15000, trainer: "Srinivas" },
-      { courseId: "C-103", courseName: "NodeJS", price: 15000, trainer: "Srinivas" },
-      { courseId: "C-104", courseName: "MongoDB", price: 15000, trainer: "Srinivas" },
-      { courseId: "C-105", courseName: "ExpressJS", price: 15000, trainer: "Srinivas" }
-    ]
-  });
+    const courseRows = mystudent.mycourses.map((course) => (
+      <tr key={course.cid}>
+        <td>{course.cid}</td>
+        <td>{course.cname}</td>
+        <td>{course.price}</td>
+        <td>{course.trainer}</td>
+      </tr>
+    ));
 
-  const showMoreInfo = (mycid) => {
-    console.log("Course Id :", mycid);
+    const displayCourses = (
+      <div>
+        <h3>Course Details of Student : {mystudent.studentId}</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>CID</th>
+              <th>CName</th>
+              <th>Price</th>
+              <th>Trainer</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {courseRows}
+          </tbody>
+        </table>
+      </div>
+    );
+
+    setMyCoursesToDisplay(displayCourses);
   };
 
-  const mycourseNamesDisplay = state.mycourseNames.map((courseName, index) => (
-    <li key={index}>{courseName}</li>
-  ));
+  const mystudentsToDisplay = mystudentsData.map((student) => (
 
-  const mycourseListDisplay = state.mycourseList.map((course) => (
-    <tr key={course.courseId}>
-      <td>{course.courseId}</td>
-      <td>{course.courseName}</td>
-      <td>{course.price}</td>
-      <td>{course.trainer}</td>
+    <tr key={student.studentId}>
+      <td>{student.studentId}</td>
+      <td>{student.stuentName}</td>
+      <td>{student.emailId}</td>
+      <td>{student.phones.office}</td>
+      <td>{student.phones.home}</td>
+      <td>{student.address.city}</td>
+      <td>{student.address.state}</td>
+
       <td>
         <button
           className="mybutton"
-          onClick={() => showMoreInfo(course.courseId)}
+          onClick={() => showCourseData(student)}
         >
-          More Info
+          Course Data
         </button>
       </td>
+
     </tr>
+
   ));
 
-  console.log("I am App Component");
-
   return (
+
     <div>
 
       <div className="myheader">
@@ -70,54 +112,40 @@ function App() {
       </div>
 
       <div className="mydata">
-        <h3><u>1. Simple Type of Properties</u></h3>
-
-        <p>Sid : {state.sid}</p>
-        <p>Sname : {state.sname}</p>
-        <p>Email : {state.email}</p>
-        <p>Dob : {state.dob}</p>
-        <p>Active : {state.isActive ? "Yes" : "No"}</p>
-      </div>
-
-      <div className="mydata">
-        <h3><u>2. Object Type Properties</u></h3>
-
-        <p>Course Id : {state.mycourse.courseId}</p>
-        <p>Course Name : {state.mycourse.courseName}</p>
-        <p>Price : {state.mycourse.price}</p>
-        <p>Trainer : {state.mycourse.trainer}</p>
-        <p>Online : {state.mycourse.isOnline ? "Yes" : "No"}</p>
-      </div>
-
-      <div className="mydata">
-        <h3><u>3. Array of Simple Types</u></h3>
-
-        <ul>{mycourseNamesDisplay}</ul>
-      </div>
-
-      <div className="mydata">
-        <h3><u>4. Array of Object Types</u></h3>
 
         <table>
+
           <thead>
             <tr>
-              <th>Course Id</th>
-              <th>Course Name</th>
-              <th>Price</th>
-              <th>Trainer</th>
+              <th>SID</th>
+              <th>SName</th>
+              <th>Email</th>
+              <th>Office Phone</th>
+              <th>Home Phone</th>
+              <th>City</th>
+              <th>State</th>
               <th></th>
             </tr>
           </thead>
 
           <tbody>
-            {mycourseListDisplay}
+            {mystudentsToDisplay}
           </tbody>
+
         </table>
 
       </div>
 
+      <br />
+
+      <div className="mydata">
+        {mycoursesToDisplay}
+      </div>
+
     </div>
+
   );
+
 }
 
 export default App;
