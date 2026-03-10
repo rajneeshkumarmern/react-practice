@@ -1,27 +1,58 @@
-import React, { useState } from "react";
-import Hello from "./Hello/Hello.jsx";
+import React, { useState, useEffect } from "react";
+import MyCourses from "./components/MyCourses";
+import Hello from "./components/Hello";
 
 const App = () => {
 
-  const [companyName] = useState("Java Learning Center");
+  const [companyName] = useState("CourseCube");
+  const [courseFlag, setCourseFlag] = useState(true);
 
-  console.log("[App] - render()");
-  console.log("[App] - companyName:", companyName);
+  useEffect(() => {
+    console.log("[App] componentDidMount");
+
+    return () => {
+      console.log("[App] componentWillUnmount");
+    };
+  }, []);
+
+  const showHideCourses = () => {
+    setCourseFlag(!courseFlag);
+  };
 
   return (
     <div className="container">
 
       <h1 className="text-center">
-        Welcome to JLC!!!
+        Welcome to {companyName}!!!
       </h1>
 
       <br />
 
-      <Hello />
+      <button
+        className="btn btn-danger"
+        onClick={showHideCourses}
+      >
+        Show Hide Courses
+      </button>
 
-      <Hello mytrainer="Dande" />
+      <br />
+      <br />
 
-      <Hello mytrainer="Srinivas" mycolor="Pink" />
+      {courseFlag && (
+        <MyCourses hello="Hello Guys" hai="Hai Guys" />
+      )}
+
+      <br />
+
+      <table className="table bordered">
+        <tbody>
+          <tr>
+            <td><Hello /></td>
+            <td><Hello mytrainer="Dande" /></td>
+            <td><Hello mytrainer="Srinivas Dande" mycolor="Blue" /></td>
+          </tr>
+        </tbody>
+      </table>
 
     </div>
   );
