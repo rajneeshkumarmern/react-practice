@@ -1,28 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
+import MyContext from "../appContext";
 
-const Lead = ({ lead, mydeleteClickHandler }) => {
+const Lead = ({ lead }) => {
 
   const [showLeadInfo, setShowLeadInfo] = useState(false);
+
+  const { dispatch } = useContext(MyContext);
 
   const onShowClick = () => {
     setShowLeadInfo(!showLeadInfo);
   };
 
+  const onDeleteClick = () => {
+    console.log("[Lead] delete click");
+
+    dispatch({
+      type: "DELETE_LEAD",
+      payload: lead.leadId
+    });
+  };
+
   return (
-    <div className="card card-body mb-4">
+    <div className="card card-body mb-3">
 
       <h4>
+
         {lead.name} - Interested for {lead.course}
 
         <i
           onClick={onShowClick}
           className="fas fa-sort-down"
-          style={{ cursor: "pointer", color: "green", fontSize: "50px" }}
+          style={{ cursor: "pointer", color: "green", fontSize: "35px" }}
         />
 
         <i
-          onClick={mydeleteClickHandler}
+          onClick={onDeleteClick}
           className="fas fa-times"
           style={{ cursor: "pointer", float: "right", color: "red" }}
         />
@@ -30,13 +43,16 @@ const Lead = ({ lead, mydeleteClickHandler }) => {
       </h4>
 
       {showLeadInfo && (
-        <ul className="list-group display-6">
+        <ul className="list-group">
+
           <li className="list-group-item">
             Email : {lead.email}
           </li>
+
           <li className="list-group-item">
             Phone : {lead.phone}
           </li>
+
         </ul>
       )}
 
@@ -45,8 +61,7 @@ const Lead = ({ lead, mydeleteClickHandler }) => {
 };
 
 Lead.propTypes = {
-  lead: PropTypes.object.isRequired,
-  mydeleteClickHandler: PropTypes.func.isRequired
+  lead: PropTypes.object.isRequired
 };
 
 export default Lead;
