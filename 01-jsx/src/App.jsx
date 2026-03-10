@@ -1,58 +1,60 @@
-import React, { useState, useEffect } from "react";
-import MyCourses from "./components/MyCourses";
-import Hello from "./components/Hello";
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Courses from "./components/Courses";
 
 const App = () => {
 
-  const [companyName] = useState("CourseCube");
   const [courseFlag, setCourseFlag] = useState(true);
 
+  // Runs on every render
   useEffect(() => {
-    console.log("[App] componentDidMount");
+    console.log("[App] - 1st useEffect");
 
     return () => {
-      console.log("[App] componentWillUnmount");
+      console.log("[App] - Cleanup 1st useEffect");
+    };
+  });
+
+  // Runs only once (componentDidMount)
+  useEffect(() => {
+    console.log("[App] - 2nd useEffect (Mounted)");
+
+    return () => {
+      console.log("[App] - Cleanup 2nd useEffect");
     };
   }, []);
 
-  const showHideCourses = () => {
+  // Another mount effect
+  useEffect(() => {
+    console.log("[App] - 3rd useEffect");
+
+    return () => {
+      console.log("[App] - Cleanup 3rd useEffect");
+    };
+  }, []);
+
+  const hideShowCourses = () => {
+    console.log("[App] hideShowCourses");
     setCourseFlag(!courseFlag);
   };
 
   return (
     <div className="container">
 
-      <h1 className="text-center">
-        Welcome to {companyName}!!!
-      </h1>
+      <h1 className="text-center">Welcome to JLC!!!</h1>
 
       <br />
 
       <button
-        className="btn btn-danger"
-        onClick={showHideCourses}
+        className="btn btn-success"
+        onClick={hideShowCourses}
       >
-        Show Hide Courses
+        Hide Show Courses
       </button>
 
-      <br />
-      <br />
+      <br /><br /><br />
 
-      {courseFlag && (
-        <MyCourses hello="Hello Guys" hai="Hai Guys" />
-      )}
-
-      <br />
-
-      <table className="table bordered">
-        <tbody>
-          <tr>
-            <td><Hello /></td>
-            <td><Hello mytrainer="Dande" /></td>
-            <td><Hello mytrainer="Srinivas Dande" mycolor="Blue" /></td>
-          </tr>
-        </tbody>
-      </table>
+      {courseFlag && <Courses />}
 
     </div>
   );
